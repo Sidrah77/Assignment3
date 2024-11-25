@@ -1,0 +1,61 @@
+<%- include ../Partials/header.ejs%>
+<%- include ../Partials/main_nav.ejs%>
+
+
+<main class="container">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1><%= title %></h1>
+            <% if(typeof displayName=='string' && displayName) { %>
+            <% } %>
+            <br>
+            <a href="/bookslist/add" class="btn btn-primary" role="button">
+                <i class="fas fa-plus-circle"></i> Add Workout
+            </a>
+        <table class="table table-bordered table-striped table-hover">
+            <!--Table Header-->
+            <tr class="d-flex">
+            <% if(typeof displayName=='string' && displayName) { %>
+                <th class="text-center col-2">date</th>
+                <th class="text-center col-2">duration</th>
+                <th class="text-center col-2">exercise</th>
+                <th class="text-center col-2">intensity</th>
+                <th class="text-center col-2"></th>
+                <th class="text-center col-2"></th>
+            
+
+            </tr>
+            <% for(let count=0;count<BookList.length;count++) {%>
+            <tr class="d-flex">
+                <td class="text-center col-2"><%= BookList[count].date %></td>
+                <td class="text-center col-2"><%= BookList[count].duration %></td>
+                <td class="text-center col-2"><%= BookList[count].exercise %></td>
+                <td class="text-center col-2"><%= BookList[count].intensity %></td>
+                <td class="text-center col-2"> 
+                    <a href="/bookslist/edit/<%= BookList[count]._id%>"
+                        class="btn btn-primary btn-sm">
+                    <i class="fas fa-pencil-alt"></i>Edit 
+
+                    </a>
+                    </td>
+
+                <td class="text-center col-1"> 
+                    <a href="/bookslist/delete/<%= BookList[count]._id%>" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i>Delete
+
+                <% } else { %>
+
+                    </a>
+                    </td>
+            </tr>
+            <% } %>
+        </table>
+        </div>
+    </div>
+</main> 
+
+
+
+
+
+<%- include ../Partials/footer.ejs%>
